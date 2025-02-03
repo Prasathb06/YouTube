@@ -7,6 +7,7 @@ import { Router } from 'react-router-dom';
 import Allroutes from "../src/Allroutes";
 import Drawersliderbar from './Component/Leftsidebar/Drawersliderbar';
 import Createeditchannel from './Pages/Channale/Createeditchannel';
+import Videoupload from './Pages/Videoupload/Videoupload';
 function App() {
   const [toggledrawersidebar,settogglerawersidebar]=useState({
     display:"none",
