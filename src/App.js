@@ -1,25 +1,44 @@
-
-// import React{useState} from 'react';
-import { useState } from 'react';
 import './App.css';
+import React, { useEffect, useState } from "react"
 import Navbar from './Component/Navbar/Navbar';
-import { Router } from 'react-router-dom';
-import Allroutes from "../src/Allroutes";
-import Drawersliderbar from './Component/Leftsidebar/Drawersliderbar';
-import Createeditchannel from './Pages/Channale/Createeditchannel';
+import { useDispatch } from 'react-redux';
+import Allroutes from "../src/Allroutes"
+import { BrowserRouter as Router } from 'react-router-dom';
+import Drawersliderbar from '../src/Component/Leftsidebar/Drawersliderbar'
+import Createeditchannel from './Pages/Channel/Createeditchannel';
 import Videoupload from './Pages/Videoupload/Videoupload';
+import { fetchallchannel } from './action/channeluser';
+import { getallvideo } from './action/video';
+import { getallcomment } from './action/comment';
+import { getallhistory } from './action/history';
+import { getalllikedvideo } from './action/likedvideo';
+import { getallwatchlater } from './action/watchlater';
 function App() {
-  const [toggledrawersidebar,settogglerawersidebar]=useState({
-    display:"none",
+  const [toggledrawersidebar, settogledrawersidebar] = useState({
+    display: "none"
   });
-  const toggledrawer =()=>{
-    if (toggledrawersidebar.display==="none") {
-      settogglerawersidebar({
-        display:"flex",
+  const dispatch = useDispatch()
+
+  
+  useEffect(() => {
+    dispatch(fetchallchannel())
+    dispatch(getallvideo())
+    dispatch(getallcomment())
+    dispatch(getallhistory())
+    dispatch(getalllikedvideo())
+    dispatch(getallwatchlater())
+  }, [dispatch])
+
+
+
+  const toggledrawer = () => {
+    if (toggledrawersidebar.display === "none") {
+      settogledrawersidebar({
+        display: "flex",
       });
     } else {
-      settogglerawersidebar({
-        display:"none",
+      settogledrawersidebar({
+        display: "none",
       });
     }
   }
@@ -27,17 +46,16 @@ function App() {
   const [videouploadpage, setvideouploadpage] = useState(false);
   return (
     <Router>
-       {
+      {
         videouploadpage && <Videoupload setvideouploadpage={setvideouploadpage} />
       }
       {editcreatechanelbtn && (
         <Createeditchannel seteditcreatechanelbtn={seteditcreatechanelbtn} />
       )}
-      <Navbar  seteditcreatechanelbtn={seteditcreatechanelbtn} toggledrawer={toggledrawer} />
-    <Allroutes seteditcreatechanelbtn={seteditcreatechanelbtn} setvideouploadpage={setvideouploadpage}/>
-    <Drawersliderbar toggledraw={toggledrawer} toggledrawersidebar={toggledrawersidebar}/>
+      <Navbar seteditcreatechanelbtn={seteditcreatechanelbtn} toggledrawer={toggledrawer} />
+      <Drawersliderbar toggledraw={toggledrawer} toggledrawersidebar={toggledrawersidebar} />
+      <Allroutes seteditcreatechanelbtn={seteditcreatechanelbtn} setvideouploadpage={setvideouploadpage} />
     </Router>
-    
   );
 }
 
