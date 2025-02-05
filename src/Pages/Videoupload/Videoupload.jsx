@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import './Videoupload.css'
-import { buildStyles, CircularProgressbar } from "react-circle-progress-bar"
+// import { buildStyles, CircularProgressbar } from "react-circle-progress-bar"
 import { useSelector, useDispatch } from 'react-redux'
 import { uploadvideo } from '../../action/video'
 const Videoupload = ({ setvideouploadpage }) => {
@@ -55,7 +55,7 @@ const Videoupload = ({ setvideouploadpage }) => {
                 <div className="ibox_div_vidupload">
                     <input type="submit" onClick={() => uploadvideofile()} value={"Upload"} className='ibox_vidupload btn_vidUpload' />
                     <div className="loader ibox_div_vidupload">
-                        <CircularProgressbar
+                        {/* <CircularProgressbar
                             value={progress}
                             text={`${progress}`}
                             styles={buildStyles({
@@ -69,7 +69,7 @@ const Videoupload = ({ setvideouploadpage }) => {
                                 backgroundColor: "#3e98c7",
                             })}
 
-                        />
+                        /> */}
                     </div>
                 </div>
             </div>
